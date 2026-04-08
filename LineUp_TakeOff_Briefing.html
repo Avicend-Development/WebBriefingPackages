@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Line Up & Take Off — Lesson Briefing Package</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #152640;
+    --blue: #1a3a5c;
+    --sky: #2d6fa4;
+    --accent: #e8a020;
+    --accent-light: #f5c14e;
+    --red: #c0392b;
+    --green: #1e7a4a;
+    --light: #f0f4f8;
+    --muted: #8fa3ba;
+    --white: #ffffff;
+    --border: rgba(255,255,255,0.08);
+    --rule: rgba(255,255,255,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--light);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* ─── PAGE WRAPPER ─── */
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ─── COVER PAGE ─── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 50%, #0a2a50 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(45,111,164,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(232,160,32,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cover-runway {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 180px;
+    background: linear-gradient(to top, rgba(13,27,42,0.95), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  .runway-marks {
+    display: flex;
+    gap: 24px;
+    opacity: 0.18;
+    margin-bottom: 20px;
+  }
+  .runway-marks span {
+    display: block;
+    width: 3px;
+    height: 60px;
+    background: var(--white);
+  }
+
+  .cover-header {
+    position: relative;
+    z-index: 2;
+  }
+
+  .org-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .org-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .cover-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 82px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 36px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 48px;
+  }
+
+  .cover-rule {
+    width: 80px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 40px;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    padding-top: 48px;
+  }
+
+  .meta-item {
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+  .meta-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .meta-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .meta-value.large {
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  /* ─── FRONT PAGE ─── */
+  .front-page {
+    background: var(--light);
+    color: var(--navy);
+    padding: 56px;
+    page-break-after: always;
+  }
+
+  .fp-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 3px solid var(--navy);
+  }
+
+  .fp-lesson-id {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--sky);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .fp-lesson-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .fp-badge {
+    background: var(--navy);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .fp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .fp-grid-full {
+    grid-column: 1 / -1;
+  }
+
+  .fp-section {
+    padding: 20px 24px;
+    border: 1px solid #d0dae4;
+    margin: -1px 0 0 -1px;
+  }
+
+  .fp-section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fp-section-label::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .fp-section h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .fp-section p, .fp-section li {
+    font-size: 12.5px;
+    color: #2c3e50;
+    line-height: 1.65;
+  }
+
+  .fp-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .fp-section ul li {
+    padding: 3px 0 3px 14px;
+    position: relative;
+  }
+  .fp-section ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--sky);
+    font-size: 10px;
+  }
+
+  .fp-section.highlight {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .fp-section.highlight p,
+  .fp-section.highlight li {
+    color: #c8d8e8;
+  }
+  .fp-section.highlight h3 {
+    color: var(--accent-light);
+  }
+  .fp-section.highlight .fp-section-label {
+    color: var(--accent);
+  }
+
+  .fp-section.accent-section {
+    background: #fff8ec;
+    border-left: 4px solid var(--accent);
+  }
+
+  .tol-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .tol-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    background: #f0f4f8;
+    border-radius: 2px;
+  }
+  .tol-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--sky);
+    letter-spacing: 0.1em;
+    min-width: 64px;
+  }
+  .tol-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .ref-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .ref-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    background: #e8f0f8;
+    color: var(--blue);
+    border: 1px solid #c0d0e0;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── BRIEFING SECTIONS ─── */
+  .briefing-section {
+    padding: 0 56px 56px;
+    page-break-inside: avoid;
+  }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 0 32px;
+  }
+
+  .section-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 72px;
+    color: rgba(45,111,164,0.15);
+    line-height: 1;
+    min-width: 56px;
+  }
+
+  .section-title-block {}
+
+  .section-category {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ─── CONTENT CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .card-grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .card-full {
+    grid-column: 1 / -1;
+  }
+
+  .card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    padding: 20px 22px;
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--sky);
+  }
+
+  .card.theory::before { background: var(--sky); }
+  .card.manoeuvre::before { background: var(--accent); }
+  .card.sop::before { background: var(--green); }
+  .card.warning::before { background: var(--red); }
+
+  .card-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 2px 8px;
+  }
+  .card.theory .card-tag { background: rgba(45,111,164,0.2); color: #7ab8e0; }
+  .card.manoeuvre .card-tag { background: rgba(232,160,32,0.15); color: var(--accent-light); }
+  .card.sop .card-tag { background: rgba(30,122,74,0.2); color: #6dcf9a; }
+  .card.warning .card-tag { background: rgba(192,57,43,0.2); color: #f08080; }
+
+  .card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .card p, .card li {
+    font-size: 12px;
+    color: #aec4d8;
+    line-height: 1.7;
+  }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card ul li {
+    padding: 3px 0 3px 16px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .card ul li:last-child { border-bottom: none; }
+
+  .card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    font-size: 9px;
+    color: var(--muted);
+    top: 5px;
+  }
+
+  .card.manoeuvre li::before { color: var(--accent); }
+  .card.sop li::before { color: #6dcf9a; }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(45,111,164,0.08);
+    border: 1px solid rgba(45,111,164,0.25);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .callout-icon {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--sky);
+    color: var(--white);
+    padding: 3px 7px;
+    min-width: 32px;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  .callout.warn { background: rgba(192,57,43,0.08); border-color: rgba(192,57,43,0.25); }
+  .callout.warn .callout-icon { background: var(--red); }
+  .callout.note .callout-icon { background: var(--accent); color: var(--navy); }
+
+  .callout p {
+    font-size: 12px;
+    color: #aec4d8;
+    line-height: 1.65;
+  }
+
+  /* ─── PROCEDURE TABLE ─── */
+  .proc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 11.5px;
+  }
+
+  .proc-table thead tr {
+    background: var(--blue);
+  }
+
+  .proc-table thead th {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 400;
+    border: 1px solid var(--border);
+  }
+
+  .proc-table tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proc-table tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.025);
+  }
+
+  .proc-table tbody td {
+    padding: 8px 12px;
+    color: #aec4d8;
+    vertical-align: top;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .proc-table td.action {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .proc-table td.callout-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-light);
+  }
+
+  /* ─── SPEED PANEL ─── */
+  .speed-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+    background: var(--blue);
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .speed-item {
+    text-align: center;
+  }
+
+  .speed-designation {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+
+  .speed-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent-light);
+    line-height: 1;
+  }
+
+  .speed-unit {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .speed-desc {
+    font-size: 10px;
+    color: #7a98b4;
+    margin-top: 4px;
+  }
+
+  /* ─── CHECK SECTION ITEMS ─── */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+
+  .check-box {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--sky);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .check-text {
+    font-size: 12.5px;
+    color: #aec4d8;
+    line-height: 1.5;
+  }
+
+  .check-text strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* ─── FOOTER ─── */
+  .doc-footer {
+    background: var(--navy-mid);
+    border-top: 2px solid var(--sky);
+    padding: 20px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .doc-footer-left {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .doc-footer-right {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* Print */
+  @media print {
+    .cover { page-break-after: always; }
+    .front-page { page-break-after: always; }
+    .briefing-section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════════════════════════════════════════════
+       COVER PAGE
+  ═══════════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-header">
+      <div class="org-tag">CAPA · P-Mentor · VFR · EASA PPL</div>
+      <div class="cover-title">Line Up &<br>Take Off</div>
+      <div class="cover-subtitle">Lesson Briefing Package</div>
+      <div class="cover-rule"></div>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-item">
+        <div class="meta-label">Briefing Duration</div>
+        <div class="meta-value large">10 min</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Aircraft Type</div>
+        <div class="meta-value">P-Mentor</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Document Ref</div>
+        <div class="meta-value">CAPA SOP E2R1<br>ATP INT Lesson Prep</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Environment</div>
+        <div class="meta-value">VFR · Controlled / Uncontrolled</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Student Level</div>
+        <div class="meta-value">EASA PPL Early Stage</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">SOP Edition</div>
+        <div class="meta-value">Edition 2, Rev. 1<br>NOV 2025</div>
+      </div>
+    </div>
+
+    <div class="cover-runway">
+      <div class="runway-marks">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FRONT PAGE
+  ═══════════════════════════════════════════════ -->
+  <div class="front-page">
+    <div class="fp-header">
+      <div>
+        <div class="fp-lesson-id">Lesson Reference · CAPA SOP §1.10 &amp; §1.11 · ATP INT DGH Series</div>
+        <div class="fp-lesson-title">Lesson Front Page</div>
+      </div>
+      <div class="fp-badge">EASA PPL · VFR</div>
+    </div>
+
+    <div class="fp-grid">
+
+      <!-- DURATION -->
+      <div class="fp-section">
+        <div class="fp-section-label">A</div>
+        <h3>Duration</h3>
+        <p>Briefing: <strong>10 minutes</strong><br>
+        This briefing covers line-up procedures, the standard departure briefing, and normal take-off technique through to initial climb. The briefing is designed for delivery on the run-up area or ground school prior to the sortie.</p>
+      </div>
+
+      <!-- STUDENT PREREQUISITES -->
+      <div class="fp-section">
+        <div class="fp-section-label">B</div>
+        <h3>Student Prerequisites</h3>
+        <ul>
+          <li>Completed BEFORE TAKE-OFF and LINE-UP checklists (SOP §1.10)</li>
+          <li>Familiar with aircraft attitude and trim concept (DGH 00/01)</li>
+          <li>Basic taxiing and RWY entry awareness</li>
+          <li>Understands nose attitude vs. horizon relationship</li>
+          <li>Has studied departure briefing format from SOP §1.9.1</li>
+        </ul>
+      </div>
+
+      <!-- LESSON OBJECTIVES -->
+      <div class="fp-section fp-grid-full">
+        <div class="fp-section-label">C</div>
+        <h3>Lesson Objectives</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;">
+          <div>
+            <strong style="font-size:11px;display:block;margin-bottom:6px;color:#1a3a5c;">KNOWLEDGE</strong>
+            <ul>
+              <li>State the purpose of the departure briefing and its mandatory elements</li>
+              <li>Explain the effect of engine torque on directional control during roll</li>
+              <li>Identify key V-speeds: VR, VX, VY for the P-Mentor</li>
+              <li>Describe the emergency action for engine failure before and after VR</li>
+            </ul>
+          </div>
+          <div>
+            <strong style="font-size:11px;display:block;margin-bottom:6px;color:#1a3a5c;">SKILL</strong>
+            <ul>
+              <li>Perform LINE-UP checklist correctly as Read &amp; Do on run-up area</li>
+              <li>Deliver a complete departure briefing per SOP §1.9.1</li>
+              <li>Execute a normal take-off: smooth power application, rudder coordination, VR call-out, flap retraction at 400 ft AGL</li>
+              <li>Maintain centreline tracking throughout the take-off roll</li>
+            </ul>
+          </div>
+          <div>
+            <strong style="font-size:11px;display:block;margin-bottom:6px;color:#1a3a5c;">ATTITUDE</strong>
+            <ul>
+              <li>Apply SOP discipline: never enter RWY without clearance and final scan</li>
+              <li>Demonstrate awareness of wake turbulence and situational readiness before reporting ready</li>
+              <li>Think in aircraft manoeuvre, not control input</li>
+              <li>Maintain positive control and confidence during power application</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOLERANCES -->
+      <div class="fp-section">
+        <div class="fp-section-label">D</div>
+        <h3>Tolerances</h3>
+        <div class="tol-grid">
+          <div class="tol-item">
+            <span class="tol-label">HEADING</span>
+            <span class="tol-value">±15°</span>
+          </div>
+          <div class="tol-item">
+            <span class="tol-label">AIRSPEED</span>
+            <span class="tol-value">+10 / −5 kt</span>
+          </div>
+          <div class="tol-item">
+            <span class="tol-label">CENTRELINE</span>
+            <span class="tol-value">±4 m</span>
+          </div>
+          <div class="tol-item">
+            <span class="tol-label">ALTITUDE</span>
+            <span class="tol-value">±100 ft</span>
+          </div>
+        </div>
+        <p style="font-size:11px;color:#5a7a9a;margin-top:10px;">Source: ATP INT Lesson Prep (DGH series). Tolerances to be relaxed for first exposures; tighten progressively through the lesson series.</p>
+      </div>
+
+      <!-- MOTIVATION -->
+      <div class="fp-section accent-section">
+        <div class="fp-section-label">E</div>
+        <h3>Motivation</h3>
+        <p>The take-off is the first phase of every flight where the student must simultaneously manage power, directional control, attitude, airspeed, and situational awareness. A disciplined line-up and departure briefing habit established early is the foundation for safe operations throughout the PPL course and beyond. Getting it right now builds the SOP muscle memory that will protect the student at every level of training.</p>
+      </div>
+
+      <!-- COMMON MISTAKES -->
+      <div class="fp-section highlight">
+        <div class="fp-section-label">F</div>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li>Entering the RWY without clearance or omitting final scan</li>
+          <li>Abrupt or partial power application at start of roll</li>
+          <li>Insufficient right rudder causing yaw left during acceleration</li>
+          <li>Rotating too early or pulling the aircraft off prematurely</li>
+          <li>Failing to call out "53 — Rotate" at VR</li>
+          <li>Not calling "Safe speed — Flaps up" and "Max continuous power" at 400 ft AGL</li>
+          <li>Allowing nose to drop when selecting flaps up (nose must be raised)</li>
+          <li>Drifting off extended centreline during initial climb</li>
+          <li>Skipping or incorrectly delivering the departure briefing</li>
+          <li>Not considering wake turbulence before reporting ready for departure</li>
+        </ul>
+        <p style="margin-top:10px;color:#7a9ab4;font-size:11px;">Sources: CAPA SOP §1.11 Common Errors; ATP INT DGH series; CASA FIM</p>
+      </div>
+
+      <!-- FI REFERENCES -->
+      <div class="fp-section fp-grid-full">
+        <div class="fp-section-label">G</div>
+        <h3>FI References</h3>
+        <div class="ref-list">
+          <span class="ref-tag">CAPA SOP E2R1 §1.9.1 — Departure Briefing</span>
+          <span class="ref-tag">CAPA SOP E2R1 §1.10 — Line-Up</span>
+          <span class="ref-tag">CAPA SOP E2R1 §1.11.1 — Normal Take-Off</span>
+          <span class="ref-tag">CAPA SOP E2R1 §1.11.2 — Crosswind Take-Off</span>
+          <span class="ref-tag">CAPA SOP E2R1 §1.12 — Climb</span>
+          <span class="ref-tag">CAPA SOP §1.5 — Checklist Handling</span>
+          <span class="ref-tag">ATP INT Lesson Prep — DGH 00 / DGH 01 / DGH 02</span>
+          <span class="ref-tag">CASA FIM — Take-Off Chapter</span>
+          <span class="ref-tag">The Flight Instructor's Manual — Ch. 11</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 1 — ENVIRONMENT
+  ═══════════════════════════════════════════════ -->
+  <div class="briefing-section">
+    <div class="section-divider">
+      <div class="section-number">01</div>
+      <div class="section-title-block">
+        <div class="section-category">Briefing Section</div>
+        <div class="section-title">Environment</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card theory">
+        <span class="card-tag">Theory</span>
+        <h4>Aerodrome Awareness</h4>
+        <ul>
+          <li>Identify active runway, circuit direction, and any active restricted areas prior to line-up</li>
+          <li>On a <strong>controlled aerodrome</strong> (e.g. EKRK), ATC clearance is mandatory before entering the runway. Do not enter if in any doubt — request confirmation</li>
+          <li>On an <strong>uncontrolled aerodrome</strong>, the crew must manoeuvre the aircraft sufficiently to scan at least the base leg and final approach sector before entering</li>
+          <li>Intersection take-offs reduce available runway — state available distance in your call-out</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#6a8fa8;"><em>Source: CAPA SOP §1.10</em></p>
+      </div>
+
+      <div class="card theory">
+        <span class="card-tag">Theory</span>
+        <h4>Wake Turbulence</h4>
+        <ul>
+          <li>Wingtip vortices are generated by all aircraft in flight. Heavier aircraft produce stronger vortices</li>
+          <li>Vortices sink and drift downwind — they are a hazard on take-off especially in calm or light crosswind conditions</li>
+          <li>Start a timer when a medium or heavy aircraft rotates. For the Twin Otter (to be treated as medium): wait ≥ 1 min 30 sec before reporting ready for departure</li>
+          <li>TWR will <strong>not</strong> issue wake turbulence advisories for the Twin Otter — crew responsibility</li>
+          <li>Advise TWR before line-up if additional spacing is needed</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#6a8fa8;"><em>Source: CAPA SOP §1.10</em></p>
+      </div>
+
+      <div class="card theory card-full">
+        <span class="card-tag">Theory</span>
+        <h4>Threat &amp; Error Management (TEM) — Departure Environment</h4>
+        <ul>
+          <li><strong>Threats:</strong> Other traffic on or approaching the runway; wake turbulence from preceding departures; runway surface condition; low-level turbulence or gusts affecting VR and initial climb speed</li>
+          <li><strong>Error traps:</strong> Rushing checklist completion; assuming clearance was given; not scanning final before entering the runway; failing to brief TEM items in the departure briefing</li>
+          <li><strong>TEM mitigations:</strong> Always complete LINE-UP checklist Read &amp; Do before entering runway; deliver departure briefing including emergency actions; confirm mental readiness before reporting ready for departure</li>
+          <li>If low-level turbulence or gusts are expected: brief modified take-off — delay VR by 5 kt (or ½ of gust value), climb at VY + 5 kt with flaps 1 until clear of turbulent layer</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#6a8fa8;"><em>Sources: CAPA SOP §1.9.1, §1.11.1 NOTE; EGAST GA-2 Decision Making</em></p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 2 — SETUP
+  ═══════════════════════════════════════════════ -->
+  <div class="briefing-section">
+    <div class="section-divider">
+      <div class="section-number">02</div>
+      <div class="section-title-block">
+        <div class="section-category">Briefing Section</div>
+        <div class="section-title">Setup</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="callout note">
+      <div class="callout-icon">SOP</div>
+      <p>The BEFORE TAKE-OFF checklist must always be performed as <strong>READ &amp; DO</strong>. The LINE-UP checklist is then completed on the run-up area before entering the runway. Do not read any checklist below 1,000 ft AGL unless circumstances require. (CAPA SOP §1.5, §1.10)</p>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card sop">
+        <span class="card-tag">SOP Reference</span>
+        <h4>Ready for Line-Up Sequence</h4>
+        <ul>
+          <li>BEFORE TAKE-OFF checklist: completed as Read &amp; Do</li>
+          <li>LINE-UP checklist: completed on run-up area (Read &amp; Do)</li>
+          <li>Verify <strong>Pitch Trim Selector set for LH</strong> (pilot flying / student side) — incorrect setting prevents pitch trim adjustment</li>
+          <li>HDG bug set to wind-corrected heading (WCH) to track extended centreline</li>
+          <li>Altitude warning set for planned level-off altitude (e.g. 1,300 ft)</li>
+          <li>Mental review of departure profile and emergency actions</li>
+          <li>Only report ready for departure when mentally prepared and all paperwork completed</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#5a9a7a;"><em>Source: CAPA SOP §1.10</em></p>
+      </div>
+
+      <div class="card manoeuvre">
+        <span class="card-tag">Departure Briefing Format</span>
+        <h4>Mandatory Briefing Elements (SOP §1.9.1)</h4>
+        <ul>
+          <li><strong>Take-off type</strong> — e.g. "Normal take-off, RWY 21, Roskilde"</li>
+          <li><strong>Profile</strong> — turn altitude, heading, climbing altitude</li>
+          <li><strong>HDG bug &amp; altitude warning</strong> — confirm set</li>
+          <li><strong>Navaids</strong> — "Navaids are set" (if applicable)</li>
+          <li><strong>Emergency — before VR:</strong> "WE STOP — close throttle, apply brakes, advise ATC"</li>
+          <li><strong>Emergency — after VR below 650 ft:</strong> "Nose down, 70 KIAS, throttle idle, flaps as required, land straight ahead within 45°, preferably left (or into wind)"</li>
+          <li><strong>Emergency — above 650 ft:</strong> "Standard emergency procedures"</li>
+          <li><strong>TEM items</strong> — if relevant (gusts, obstacles, low-level turbulence)</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#c5a050;"><em>Source: CAPA SOP §1.9.1; IFR version §2.6</em></p>
+      </div>
+
+      <div class="card theory card-full">
+        <span class="card-tag">Theory</span>
+        <h4>Example Departure Briefing — P-Mentor VFR (EKRK RWY 21)</h4>
+        <p style="font-family:'Space Mono',monospace;font-size:11px;color:#c8d8e8;line-height:2;padding:12px 16px;background:rgba(0,0,0,0.25);border-left:3px solid rgba(232,160,32,0.4);margin-top:8px;">
+          "VFR departure RWY 21, Roskilde. Normal take-off. After departure climb straight ahead 650 ft, expect right turn inbound Borup HDG 235°, climbing altitude 1,300 ft. HDG bug set for WCH and altitude warning set.<br><br>
+          In case of any failure before VR — WE STOP, close throttle, apply sufficient brakes, advise ATC.<br>
+          In case of engine failure after VR and below 650 ft — nose down, speed 70 KIAS, throttle idle, flaps as required, land straight ahead within 45°, preferably to the left.<br>
+          Above 650 ft — standard emergency procedures."
+        </p>
+        <p style="margin-top:10px;font-size:11px;color:#6a8fa8;"><em>Source: CAPA SOP §1.9.1 — modify direction per wind, local conditions, and obstacles. Altitudes in MSL or AGL (not mixed). Always include TEM if relevant.</em></p>
+      </div>
+
+    </div>
+
+    <!-- V-SPEEDS -->
+    <div class="speed-panel">
+      <div class="speed-item">
+        <div class="speed-designation">VR</div>
+        <div class="speed-value">53</div>
+        <div class="speed-unit">KIAS</div>
+        <div class="speed-desc">Rotation speed<br>(call: "53 — Rotate")</div>
+      </div>
+      <div class="speed-item">
+        <div class="speed-designation">VX</div>
+        <div class="speed-value">56</div>
+        <div class="speed-unit">KIAS</div>
+        <div class="speed-desc">Best angle of climb<br>(safe speed min.)</div>
+      </div>
+      <div class="speed-item">
+        <div class="speed-designation">VY</div>
+        <div class="speed-value">70</div>
+        <div class="speed-unit">KIAS</div>
+        <div class="speed-desc">Best rate of climb<br>(flaps 1 &amp; flaps up)</div>
+      </div>
+      <div class="speed-item">
+        <div class="speed-designation">V<sub style="font-size:14px">CRZ CLB</sub></div>
+        <div class="speed-value">80</div>
+        <div class="speed-unit">KIAS</div>
+        <div class="speed-desc">Cruise climb<br>(above 1,000 ft AGL)</div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 3 — EXECUTION
+  ═══════════════════════════════════════════════ -->
+  <div class="briefing-section">
+    <div class="section-divider">
+      <div class="section-number">03</div>
+      <div class="section-title-block">
+        <div class="section-category">Briefing Section</div>
+        <div class="section-title">Execution</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">WARN</div>
+      <p>Always use as much runway as practical for the best safety margin. Always scan final before entering the runway and call out accordingly. If in doubt about clearance, ask ATC once more. (CAPA SOP §1.10)</p>
+    </div>
+
+    <!-- LINE-UP PROCEDURE TABLE -->
+    <table class="proc-table" style="margin-bottom:20px;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Action</th>
+          <th>Call-Out</th>
+          <th>SOP Ref</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="action">Obtain RWY clearance / confirm</td>
+          <td>—</td>
+          <td>§1.10</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="action">Scan final for traffic</td>
+          <td class="callout-text">"Final clear — Lining up RWY 21"<br><em style="color:#6a8fa8;font-size:10px;">Or: "…RWY 29 Bravo 5 intersection — 1,500 m available"</em></td>
+          <td>§1.10</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="action">Roll onto runway centreline using full available length</td>
+          <td>—</td>
+          <td>§1.10</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="action">Check HSI / heading indicator against runway</td>
+          <td class="callout-text">"Heading indicator checked — RWY 21 identified"</td>
+          <td>§1.10</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="action">Identify visual reference point on extended centreline</td>
+          <td>—</td>
+          <td>§1.10</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="action">Select LANDING light ON (and TAXI light ON)</td>
+          <td>—</td>
+          <td>§1.11.1</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="action">Mentally review turning altitude &amp; heading</td>
+          <td>—</td>
+          <td>§1.11.1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- NORMAL TAKE-OFF TABLE -->
+    <table class="proc-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Action</th>
+          <th>Call-Out</th>
+          <th>Speed / Alt</th>
+          <th>SOP Ref</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="action">Hold brakes. Advance throttle to MAP 20". Check engine instruments. Start timer.</td>
+          <td class="callout-text">"Engine instruments checked — Timing started"</td>
+          <td>—</td>
+          <td>§1.11.1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="action">Release brakes. Apply full power smoothly.</td>
+          <td class="callout-text">"Full power" (verify RPM &amp; MAP)</td>
+          <td>—</td>
+          <td>§1.11.1</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="action">Apply right rudder to maintain centreline. Slight forward stick pressure until VR.</td>
+          <td>—</td>
+          <td>Accelerating</td>
+          <td>§1.11.1</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="action">At VR, call out and rotate. Let aircraft accelerate to 70 KIAS.</td>
+          <td class="callout-text">"53 — Rotate"</td>
+          <td>53 KIAS</td>
+          <td>§1.11.1</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="action">Maintain 70 KIAS climb. Pitch ~8° ANU (flaps 1).</td>
+          <td>—</td>
+          <td>70 KIAS</td>
+          <td>§1.11.1</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="action">At 400 ft AGL: confirm positive ROC, check safe speed ≥ VX 56 KIAS. Select flaps up. RAISE NOSE to ~12.5° ANU. Set MCP (2250 RPM).</td>
+          <td class="callout-text">"Safe speed — Flaps up"<br>"Max continuous power"</td>
+          <td>400 ft AGL<br>≥56 KIAS</td>
+          <td>§1.11.1, §1.12</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="action">At 500 ft AGL: look out and commence turn as briefed.</td>
+          <td>—</td>
+          <td>500 ft AGL</td>
+          <td>§1.11.1</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td class="action">At 1,000 ft AGL: lower pitch, accelerate to cruise climb 80 KIAS. Select TAXI light OFF. Complete AFTER TAKE-OFF checklist by heart.</td>
+          <td>—</td>
+          <td>1,000 ft AGL<br>80 KIAS</td>
+          <td>§1.11.1, §1.12</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-grid" style="margin-top:16px;">
+
+      <div class="card manoeuvre">
+        <span class="card-tag">Theory — Aerodynamics</span>
+        <h4>Forces During Take-Off Roll</h4>
+        <ul>
+          <li><strong>Torque / P-factor:</strong> Engine torque and propeller slipstream cause the nose to yaw left during the take-off roll. Right rudder corrects this tendency</li>
+          <li><strong>Lift build-up:</strong> As airspeed increases, lift increases proportionally to V². The aircraft becomes unstuck progressively — do not force it off the ground early</li>
+          <li><strong>Ground effect:</strong> Within ~half wingspan of the runway, induced drag is reduced — the aircraft may "float" in ground effect before accelerating to VY</li>
+          <li><strong>Trim change at flap retraction:</strong> Selecting flaps up removes the nose-down pitching moment — the nose MUST be raised simultaneously to maintain the climb attitude</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#c5a050;"><em>Source: CAPA SOP §1.11.1 NOTE; CASA FIM; The FI Manual</em></p>
+      </div>
+
+      <div class="card warning">
+        <span class="card-tag">Instructor Note — Common Errors</span>
+        <h4>Watch for These During Execution</h4>
+        <ul>
+          <li>Abrupt power application causing torque-induced yaw before student can correct</li>
+          <li>Premature rotation — pulling the aircraft off before VR; stall risk in ground effect</li>
+          <li>Nose drop on flap retraction — watch for this at 400 ft AGL specifically</li>
+          <li>Drifting off centreline during initial climb — student switches visual attention to instruments too early; reinforce outside reference</li>
+          <li>Missing or mumbling the "Safe speed — Flaps up" / "Max continuous power" call-outs</li>
+          <li>Not trimming after power / flap changes — high control load leads to imprecise flying</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#f08080;"><em>Sources: CAPA SOP §1.11 Common Errors; ATP INT DGH series; CASA FIM</em></p>
+      </div>
+
+      <div class="card theory card-full">
+        <span class="card-tag">Crosswind &amp; Turbulence Variations (SOP §1.11.2)</span>
+        <h4>Modified Technique When Required</h4>
+        <ul>
+          <li><strong>Crosswind (XWC &gt; 5 kt):</strong> Hold aileron into wind throughout roll. Maintain track with rudder. Accelerate to VR + 5–10 kt, rotate more quickly than normal. Immediately allow nose to weathervane into wind to establish crab angle; level wings in the crab. Check max crosswind component not exceeded.</li>
+          <li><strong>Low-level turbulence / gusts:</strong> Delay VR by 5 kt (or ½ of gust increment). Initial climb at 70 KIAS flaps 1; after flaps up, climb at VY + 5 kt (max addition 10 kt). Verify climb performance still meets obstacle clearance requirements. Brief modification in the departure briefing: omit "Normal take-off" and brief explicitly.</li>
+        </ul>
+        <p style="margin-top:10px;font-size:11px;color:#6a8fa8;"><em>Source: CAPA SOP §1.11.2 and §1.11.1 NOTE</em></p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 4 — CHECK
+  ═══════════════════════════════════════════════ -->
+  <div class="briefing-section">
+    <div class="section-divider">
+      <div class="section-number">04</div>
+      <div class="section-title-block">
+        <div class="section-category">Briefing Section</div>
+        <div class="section-title">Check</div>
+      </div>
+      <div class="section-line"></div>
+    </div>
+
+    <p style="color:#7a98b4;font-size:12.5px;margin-bottom:20px;">Use the following items to debrief the student and verify understanding at the end of the briefing. The FI should ask these verbally — the student should be able to answer without reference to notes before the lesson is considered ready to fly.</p>
+
+    <div class="card-grid">
+
+      <div class="card sop">
+        <span class="card-tag">Knowledge Check</span>
+        <h4>Oral Questions — Procedures</h4>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What checklist is completed on the run-up area, and how must it be performed?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What are the mandatory elements of a departure briefing?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What call-out is made before entering the runway? When can you omit it?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What is VR on the P-Mentor? What call-out accompanies it?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What two actions are completed at 400 ft AGL, and why must the nose be raised when selecting flaps up?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What is the emergency action if the engine fails before VR? After VR but below 650 ft?</div>
+        </div>
+      </div>
+
+      <div class="card theory">
+        <span class="card-tag">Knowledge Check</span>
+        <h4>Oral Questions — Theory</h4>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Why does the nose yaw left during the take-off roll, and how is it corrected?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What is the difference between VX and VY? When would you use VX?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">How does a crosswind affect the take-off technique? Describe the aileron and rudder inputs.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Why do we wait before reporting ready for departure after the Twin Otter departs?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Why is the Pitch Trim Selector position critical before entering the runway?</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">What speed does the student climb at above 1,000 ft AGL, and what checklist is completed at that point?</div>
+        </div>
+      </div>
+
+      <div class="card manoeuvre card-full">
+        <span class="card-tag">FI Assessment Criteria</span>
+        <h4>Standard to be Demonstrated Before Progressing</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;">
+          <div>
+            <p style="color:#f5c14e;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;margin-bottom:8px;">MINIMUM STANDARD</p>
+            <ul>
+              <li>Delivers a complete departure briefing</li>
+              <li>Scans final and calls out before entering runway</li>
+              <li>Maintains approximate centreline during roll</li>
+              <li>Rotates at or near VR with call-out</li>
+              <li>Selects flaps up at 400 ft with call-out</li>
+            </ul>
+          </div>
+          <div>
+            <p style="color:#f5c14e;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;margin-bottom:8px;">PROGRESSION STANDARD</p>
+            <ul>
+              <li>Smooth power application, no abrupt inputs</li>
+              <li>Rudder coordination throughout the roll</li>
+              <li>Nose raised on flap retraction without prompting</li>
+              <li>Tracks extended centreline in climb</li>
+              <li>All call-outs accurate and timely</li>
+            </ul>
+          </div>
+          <div>
+            <p style="color:#f5c14e;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;margin-bottom:8px;">CONSOLIDATION STANDARD</p>
+            <ul>
+              <li>Performs all of the above without prompting</li>
+              <li>Maintains tolerances per ATP INT DGH series</li>
+              <li>Correctly modifies technique for crosswind / gusts</li>
+              <li>Can describe emergency procedures without reference</li>
+              <li>Demonstrates SOP awareness and crew resource discipline</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top:14px;font-size:11px;color:#6a8fa8;"><em>Sources: CAPA SOP §1.10–§1.12; ATP INT DGH series tolerances; CASA FIM instructional guidance</em></p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="doc-footer-left">
+      CAPA SOP Edition 2, Rev. 1 · NOV 2025 · P-Mentor VFR · EASA PPL<br>
+      Briefing Package: Line Up &amp; Take Off · Prepared for FI use
+    </div>
+    <div class="doc-footer-right">
+      Sources: CAPA SOP §1.9.1 / §1.10 / §1.11 / §1.12<br>
+      ATP INT Lesson Prep · CASA FIM · The FI Manual
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

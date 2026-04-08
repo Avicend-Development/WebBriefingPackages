@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Briefing – Turns 45° Bank</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1e35;
+    --sky: #1e6fa8;
+    --sky-light: #3a9bd5;
+    --amber: #e8a020;
+    --white: #f5f7fa;
+    --offwhite: #eaeef3;
+    --muted: #6b7e93;
+    --red: #c0392b;
+    --green: #1a7a4a;
+    --divider: rgba(30,111,168,0.18);
+    --card-bg: #ffffff;
+    --section-bg: #f0f4f9;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--offwhite);
+    font-family: var(--font-body);
+    color: var(--navy);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--navy);
+    color: var(--white);
+    padding: 48px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30,111,168,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .org-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--sky-light);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .cover-title {
+    font-family: var(--font-display);
+    font-size: 64px;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: var(--white);
+  }
+  .cover-title span { color: var(--amber); }
+  .cover-subtitle {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--sky-light);
+    margin-top: 10px;
+    letter-spacing: 0.06em;
+  }
+  .cover-badge {
+    background: var(--sky);
+    border-radius: 8px;
+    padding: 14px 20px;
+    text-align: right;
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+  .cover-badge .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+  }
+  .cover-badge .value {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--white);
+    margin-top: 2px;
+  }
+
+  .cover-divider {
+    height: 1px;
+    background: var(--divider);
+    margin: 28px 0 24px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* ── FRONT PAGE GRID ── */
+  .front-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 28px 32px;
+    background: var(--card-bg);
+    border-bottom: 2px solid var(--sky);
+  }
+  .front-grid .full { grid-column: 1 / -1; }
+
+  .fp-card {
+    background: var(--section-bg);
+    border-left: 4px solid var(--sky);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 16px;
+  }
+  .fp-card.amber { border-left-color: var(--amber); }
+  .fp-card.red   { border-left-color: var(--red); }
+  .fp-card.green { border-left-color: var(--green); }
+  .fp-card.navy  { border-left-color: var(--navy); }
+
+  .fp-card h3 {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .fp-card p, .fp-card li {
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+  .fp-card ul { padding-left: 16px; }
+  .fp-card li { margin-bottom: 3px; }
+
+  .tol-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .tol-item {
+    text-align: center;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 10px 8px;
+  }
+  .tol-item .tol-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--sky-light);
+    text-transform: uppercase;
+  }
+  .tol-item .tol-value {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--amber);
+    margin-top: 2px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px 14px;
+    background: var(--navy);
+    position: relative;
+  }
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 52px;
+    color: var(--amber);
+    line-height: 1;
+    min-width: 44px;
+  }
+  .section-title-block h2 {
+    font-family: var(--font-display);
+    font-size: 30px;
+    color: var(--white);
+    letter-spacing: 0.06em;
+  }
+  .section-title-block p {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--sky-light);
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* ── SECTION BODY ── */
+  .section-body {
+    background: var(--card-bg);
+    padding: 24px 32px;
+    border-bottom: 3px solid var(--divider);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .content-block {
+    background: var(--section-bg);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .content-block h4 {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sky);
+    border-bottom: 1px solid var(--divider);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  .content-block p, .content-block li {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #1a2e42;
+  }
+  .content-block ul { padding-left: 16px; }
+  .content-block li { margin-bottom: 4px; }
+
+  .manoeuvre-box {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 18px 20px;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .manoeuvre-box h4 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+  .step-list { counter-reset: step; list-style: none; padding: 0; }
+  .step-list li {
+    counter-increment: step;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(245,247,250,0.92);
+  }
+  .step-list li::before {
+    content: counter(step);
+    background: var(--sky);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .sop-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(30,111,168,0.1);
+    border: 1px solid rgba(30,111,168,0.25);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--sky);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .sop-ref::before { content: '§'; font-weight: 700; }
+
+  .ref-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+  .warning-box {
+    background: #fff4e0;
+    border-left: 4px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #6b4400;
+  }
+  .warning-box strong { color: var(--amber); }
+
+  .check-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .check-item {
+    border: 2px solid var(--divider);
+    border-radius: 6px;
+    padding: 12px 14px;
+    position: relative;
+  }
+  .check-item .check-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 4px;
+  }
+  .check-item p {
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  .check-item .cb {
+    width: 16px; height: 16px;
+    border: 2px solid var(--muted);
+    border-radius: 3px;
+    position: absolute;
+    top: 12px; right: 12px;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .doc-footer span { color: var(--sky-light); }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .cover { break-after: page; }
+    .section-header, .section-body { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════════════════ COVER / FRONT PAGE ═══════════════════ -->
+  <div class="cover">
+    <div class="cover-top">
+      <div>
+        <div class="org-label">CAPA · P-Mentor · EASA PPL · VFR</div>
+        <div class="cover-title">TURNS<br><span>45° BANK</span></div>
+        <div class="cover-subtitle">FI LESSON BRIEFING PACKAGE &nbsp;·&nbsp; STEEP TURNS</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+        <div class="cover-badge">
+          <div class="label">Duration</div>
+          <div class="value">15 MIN</div>
+        </div>
+        <div class="cover-badge" style="background:#1a3a58">
+          <div class="label">Aircraft</div>
+          <div class="value" style="font-size:20px">PA28</div>
+        </div>
+      </div>
+    </div>
+    <div class="cover-divider"></div>
+    <div style="font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.08em">
+      CAPA SOP Ed.2 Rev.1 &nbsp;·&nbsp; ATP INT. LESSON PREP &nbsp;·&nbsp; EKRK TRAINING AREA
+    </div>
+  </div>
+
+  <!-- ═══════════════════ FRONT PAGE GRID ═══════════════════ -->
+  <div class="front-grid">
+
+    <!-- Objectives -->
+    <div class="fp-card">
+      <h3>Lesson Objectives</h3>
+      <ul>
+        <li>Perform coordinated 360° turns at exactly 45° angle of bank</li>
+        <li>Maintain altitude, heading accuracy and coordination throughout</li>
+        <li>Demonstrate controlled entry and roll-out using visual references</li>
+        <li>Recognise and manage overbanking tendency with aileron pressure</li>
+        <li>Apply appropriate power increase and back-pressure in the turn</li>
+        <li>Roll out within tolerances on a pre-selected heading or feature</li>
+      </ul>
+    </div>
+
+    <!-- Prerequisites -->
+    <div class="fp-card amber">
+      <h3>Student Prerequisites</h3>
+      <ul>
+        <li>Competent in medium (30°) level turns through 360°</li>
+        <li>Demonstrated coordinated flight — ball discipline</li>
+        <li>Attitude flying: nose on horizon, not control input</li>
+        <li>Lookout habit established before every turn</li>
+        <li>Familiar with ACSEL check procedure</li>
+        <li>Basic understanding of forces in a turn (lift, weight, centrifugal)</li>
+      </ul>
+    </div>
+
+    <!-- Tolerances -->
+    <div class="fp-card full navy">
+      <h3>Performance Tolerances &nbsp;<span style="font-size:11px;color:var(--muted);font-weight:300">(CAPA SOP / ATP INT. Lesson Prep)</span></h3>
+      <div class="tol-row" style="margin-top:10px">
+        <div class="tol-item">
+          <div class="tol-label">Altitude</div>
+          <div class="tol-value">±100 ft</div>
+        </div>
+        <div class="tol-item">
+          <div class="tol-label">Bank Angle</div>
+          <div class="tol-value">±5°</div>
+        </div>
+        <div class="tol-item">
+          <div class="tol-label">Roll-out Hdg</div>
+          <div class="tol-value">±10°</div>
+        </div>
+        <div class="tol-item">
+          <div class="tol-label">Airspeed</div>
+          <div class="tol-value">±5 kt</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Motivation -->
+    <div class="fp-card green">
+      <h3>Motivation</h3>
+      <p>Steep turns are the foundation of advanced airwork: 720° turns, spiral recoveries, and evasive manoeuvring. Proficiency at 45° bank demands smooth, coordinated control pressure and accurate attitude flying — skills that directly transfer to all advanced flight phases. Perfect turns now save hours of remedial work later.</p>
+    </div>
+
+    <!-- Common Mistakes -->
+    <div class="fp-card red">
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Applying aileron first, then waiting before adding back-pressure — causes a slip entry</li>
+        <li>Not adding power — speed decays, altitude lost</li>
+        <li>In left turn: not adding power immediately (Pitot on left wing causes early IAS drop)</li>
+        <li>Forgetting lookout before initiating the turn</li>
+        <li>Not starting roll-out 10°–20° before target heading</li>
+        <li>Failing to reduce power on roll-out — aircraft climbs as wings level</li>
+        <li>Over-correcting backpressure → high load factor / imminent stall</li>
+        <li>Attempting to raise a low nose by back-pressure alone — reduce bank first</li>
+      </ul>
+    </div>
+
+    <!-- FI References -->
+    <div class="fp-card full">
+      <h3>FI References</h3>
+      <div class="ref-row">
+        <span class="sop-ref">CAPA SOP §1.22.4 Steep Turns (p.47–48)</span>
+        <span class="sop-ref">CAPA SOP §1.22 Turns — General (p.46)</span>
+        <span class="sop-ref">CAPA SOP ACSEL Check (p.53)</span>
+        <span class="sop-ref">ATP INT. Lesson Prep — DGH 03</span>
+        <span class="sop-ref">EGAST GA1 Collision Avoidance</span>
+        <span class="sop-ref">EGAST GA8 Stall & Spin / Load Factor</span>
+      </div>
+    </div>
+
+  </div><!-- /front-grid -->
+
+
+  <!-- ═══════════════════ SECTION 1: ENVIRONMENT ═══════════════════ -->
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title-block">
+      <h2>ENVIRONMENT</h2>
+      <p>AREA SELECTION · CONDITIONS · AIRMANSHIP</p>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+
+      <div>
+        <div class="content-block">
+          <h4>Theory — Forces in a Steep Turn</h4>
+          <p>In a turn, lift must overcome both weight <em>and</em> centrifugal force. As bank increases, the vertical component of lift decreases — requiring increased back-pressure to maintain altitude. At 45° bank the load factor is approximately <strong>1.41 g</strong>, raising the stall speed by ~19%. Drag increases significantly, so power must be added to maintain airspeed.</p>
+        </div>
+        <div class="content-block">
+          <h4>Theory — Overbanking Tendency</h4>
+          <p>At 45° and above, the outside wing travels faster than the inside wing, generating more lift on the outside. This causes the bank to steepen automatically unless checked with <em>opposite aileron pressure</em>. This overbanking tendency distinguishes steep turns from medium turns where inherent stability holds the bank.</p>
+        </div>
+        <div class="content-block">
+          <h4>Theory — Load Factor & Stall Awareness</h4>
+          <p>The stall speed increases proportionally to the square root of the load factor. At 45° bank: stall speed ≈ Vs × √1.41. Excessive back-pressure in a steep turn tightens the turn, further increases load factor, and can lead to an accelerated stall. Recognise the warning: buffet, reduced control effectiveness, high sink rate.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="content-block">
+          <h4>Training Area Conditions (ATP INT. Lesson Prep)</h4>
+          <ul>
+            <li>Good visibility and cloudbase — VMC throughout</li>
+            <li>Wind: non-gusty, ideally ≤15 kt for initial introduction</li>
+            <li>Suggested area: SW of Roskilde CTR (EKRK), 1,000–2,500 ft</li>
+            <li>Clear of controlled airspace, populated areas, and cloud</li>
+            <li>Minimum altitude for airwork: 3,000 ft AGL (or per ACSEL)</li>
+          </ul>
+        </div>
+        <div class="content-block">
+          <h4>Airmanship — Collision Avoidance (EGAST GA1)</h4>
+          <ul>
+            <li>Collisions are most likely when aircraft are turning — maintain heightened awareness during this exercise</li>
+            <li>Perform clearing turns before any manoeuvre — look, then turn</li>
+            <li>During a turn ≈85% time on lookout, 10% attitude check, 5% instruments</li>
+            <li>High-wing aircraft: lift wing slightly before turning to clear the blind spot</li>
+            <li>Maintain continuous lookout during all 360° of the turn</li>
+          </ul>
+        </div>
+        <div class="content-block">
+          <h4>SOP References</h4>
+          <div class="ref-row">
+            <span class="sop-ref">CAPA SOP §1.22 — Turns General</span>
+            <span class="sop-ref">CAPA SOP §1.22.4 — Steep Turns</span>
+            <span class="sop-ref">EGAST GA1 — Collision Avoidance</span>
+            <span class="sop-ref">EGAST GA8 — Load Factor / Stall Speed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════ SECTION 2: SETUP ═══════════════════ -->
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title-block">
+      <h2>SETUP</h2>
+      <p>AIRCRAFT CONFIGURATION · ACSEL CHECK · ENTRY PREPARATION</p>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+
+      <div>
+        <div class="content-block">
+          <h4>Theory — Entry Preparation</h4>
+          <p>Before every steep turn, the area must be cleared. The pilot selects a fixed visual reference point on the horizon (or sets the HDG bug) to define the entry and roll-out heading. This prevents spatial disorientation during 360° turns and anchors the awareness of when roll-out should begin.</p>
+          <p style="margin-top:8px">Trim the aircraft for level cruise. Verify engine instruments are in the green. Steep turns are initiated from straight and level flight — note any lateral stability characteristics of the PA28 (inherent stability tends to resist banking above 30°).</p>
+        </div>
+        <div class="content-block">
+          <h4>ACSEL Check (CAPA SOP)</h4>
+          <p>Call out and complete before entering the manoeuvre:</p>
+          <ul>
+            <li><strong>A</strong> — Altitude: "…ft. Manoeuvre above 3,000 ft AGL."</li>
+            <li><strong>C</strong> — Configuration: "Steep turn, clean, cruise speed."</li>
+            <li><strong>S</strong> — Safety: "Loose objects stowed, seat belts fastened."</li>
+            <li><strong>E</strong> — Engine: "Instruments in the green, set up for airwork."</li>
+            <li><strong>L</strong> — Location: "Clear of populated areas, cloud — clearing turns."</li>
+          </ul>
+          <p style="margin-top:6px">Call out: <em>"ACSEL check completed."</em></p>
+        </div>
+      </div>
+
+      <div>
+        <div class="content-block">
+          <h4>Aircraft Configuration</h4>
+          <ul>
+            <li>Speed: normal cruise (PA28 ~100 KIAS) — do not exceed VA</li>
+            <li>Clean configuration — flaps up, gear up (if applicable)</li>
+            <li>Power: set cruise MAP/RPM (e.g. MAP 24" / 2100 RPM)</li>
+            <li>Trim: aircraft in trim for straight and level flight</li>
+            <li>Carburettor heat: as required per conditions / POH</li>
+          </ul>
+        </div>
+        <div class="content-block">
+          <h4>Visual Reference Selection</h4>
+          <ul>
+            <li>Choose a prominent geographic feature or heading on the horizon to mark the start/end of the turn</li>
+            <li>Set HDG bug to current heading before entry</li>
+            <li>Side-by-side seating note: in a left turn, the nose appears to rise; in a right turn, it appears to lower — compensate consciously</li>
+            <li>Roll-out lead: begin 10°–20° before the target heading</li>
+          </ul>
+        </div>
+        <div class="content-block">
+          <h4>SOP References</h4>
+          <div class="ref-row">
+            <span class="sop-ref">CAPA SOP §ACSEL Check (p.53)</span>
+            <span class="sop-ref">CAPA SOP §1.22.4 — Entry Prep</span>
+            <span class="sop-ref">CAPA SOP §1.13 — Level Flight Setup</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════ SECTION 3: EXECUTION ═══════════════════ -->
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title-block">
+      <h2>EXECUTION</h2>
+      <p>ENTRY · IN TURN · ROLL-OUT · INSTRUCTOR TECHNIQUE</p>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="warning-box">
+      <strong>Key principle (CAPA SOP §1.22.4):</strong> Control <em>pressure</em> not control movement. Aileron and backpressure must be applied simultaneously as bank increases — never wait for the bank to establish before adding elevator input.
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="manoeuvre-box">
+          <h4>ENTRY — 0° to 45° Bank</h4>
+          <ol class="step-list">
+            <li>Clear the area: look in the direction of turn before rolling.</li>
+            <li>Apply aileron in the direction of turn with coordinated rudder.</li>
+            <li>As bank passes 30°, simultaneously add back-pressure AND increase power to maintain speed and altitude.<br><em>Left turn only: start adding power immediately with the roll — the Pitot tube on the left wing causes early IAS indication drop.</em></li>
+            <li>At 45° bank: neutralise aileron and rudder inputs.</li>
+            <li>Hold back-pressure to keep nose at correct position on the horizon. Cross-check: altimeter, nose position, wing angle.</li>
+          </ol>
+        </div>
+
+        <div class="manoeuvre-box" style="background:#0d2e4a">
+          <h4>IN THE TURN — Maintaining 45°</h4>
+          <ol class="step-list">
+            <li>Aileron: hold light opposite (top) aileron to counter overbanking tendency.</li>
+            <li>Elevator: maintain constant back-pressure — nose at horizon level-turn attitude.</li>
+            <li>Rudder: use for coordination — keep the ball centred.</li>
+            <li>Power: maintain as set to sustain cruise speed — watch for speed decay.</li>
+            <li>If nose drops too far below horizon: reduce bank first, then raise nose. Never use elevator alone to recover a low nose at 45°+.</li>
+            <li>Scan: attitude → altimeter → AI → ball. 85% outside on visual references.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div>
+        <div class="manoeuvre-box" style="background:#1a3340">
+          <h4>ROLL-OUT — 45° to Wings Level</h4>
+          <ol class="step-list">
+            <li>Begin roll-out 10°–20° before the target heading / visual reference.</li>
+            <li>Apply opposite aileron and rudder to roll wings level.</li>
+            <li>Simultaneously ease off back-pressure as bank decreases.</li>
+            <li>Reduce power as bank passes through 30° on roll-out (left turn: reduce power simultaneously with roll-out start).</li>
+            <li>As wings level: neutralise all control inputs and trim for straight and level.</li>
+            <li>Cross-check altimeter for level flight. Call out heading achieved.</li>
+          </ol>
+        </div>
+
+        <div class="content-block">
+          <h4>Instructor Technique Notes</h4>
+          <ul>
+            <li>Demo first with "talk-through" narration; student flies from second attempt</li>
+            <li>Introduce right and left turns — note different sight pictures in side-by-side seating</li>
+            <li>If time permits, progress to 720° turns once 360° is consistent</li>
+            <li>Cover AI/DG on later practice attempts to reinforce visual attitude flying</li>
+            <li>Correct overbanking tendency comment: raise it only once it becomes a habitual problem — early mention causes over-correction</li>
+            <li>Typical altitude profile error: diving entry then climbing roll-out — brief the student to apply backpressure co-currently with bank input</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h4>SOP References</h4>
+          <div class="ref-row">
+            <span class="sop-ref">CAPA SOP §1.22.4 — Steep Turns (p.47–48)</span>
+            <span class="sop-ref">CAPA SOP §1.22 — Turns General (p.46)</span>
+            <span class="sop-ref">ATP INT. Lesson Prep — DGH 03</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════ SECTION 4: CHECK ═══════════════════ -->
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title-block">
+      <h2>CHECK</h2>
+      <p>ASSESSMENT · DEBRIEF · STANDARDS</p>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="content-block" style="margin-bottom:20px">
+      <h4>Lesson Standard — Pass/Progress Criteria</h4>
+      <p>The student demonstrates 360° turns at 45° bank, both left and right, meeting all four tolerances simultaneously (±100 ft, ±5° bank, ±10° heading, ±5 kt airspeed) for a minimum of one complete revolution in each direction. Coordination is maintained (ball centred) throughout entry, turn and roll-out.</p>
+    </div>
+
+    <div class="check-grid">
+      <div class="check-item">
+        <div class="check-label">Lookout &amp; ACSEL</div>
+        <p>Clearing turns completed. ACSEL check called out correctly. Area confirmed clear before entry.</p>
+        <div class="cb"></div>
+      </div>
+      <div class="check-item">
+        <div class="check-label">Entry Coordination</div>
+        <p>Aileron and back-pressure applied simultaneously as bank increases. No slip/skid during entry. Power added correctly (immediate in left turn).</p>
+        <div class="cb"></div>
+      </div>
+      <div class="check-item">
+        <div class="check-label">Bank Accuracy</div>
+        <p>45° ±5° maintained throughout the turn. Overbanking tendency managed with light aileron input. No excessive aileron correction.</p>
+        <div class="cb"></div>
+      </div>
+      <div class="check-item">
+        <div class="check-label">Altitude Control</div>
+        <p>Altitude held within ±100 ft. No significant altitude gain on roll-out. Nose attitude correctly referenced to horizon.</p>
+        <div class="cb"></div>
+      </div>
+      <div class="check-item">
+        <div class="check-label">Coordination (Ball)</div>
+        <p>Ball centred throughout entry, turn and roll-out. Rudder used correctly for balance — not for direction. No skids or slips.</p>
+        <div class="cb"></div>
+      </div>
+      <div class="check-item">
+        <div class="check-label">Roll-out Accuracy</div>
+        <p>Roll-out commenced 10°–20° before target. Wings level within ±10° of entry heading. Back-pressure released progressively. Power reduced on roll-out.</p>
+        <div class="cb"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+    <div class="two-col">
+      <div class="content-block">
+        <h4>Debrief Points — Typical Issues</h4>
+        <ul>
+          <li>Slip on entry: delayed backpressure — brief "simultaneous aileron and elevator"</li>
+          <li>Altitude loss: insufficient power or back-pressure — review forces in turn diagram</li>
+          <li>Nose too low: student attempts elevator alone — reinforce "reduce bank, then raise nose"</li>
+          <li>Heading overshoot: late roll-out — practise half-bank lead rule</li>
+          <li>Speed decay in left turn: Pitot effect — must add power immediately on left roll</li>
+          <li>Climbing roll-out: failed to reduce power — emphasise power reduction on roll-out</li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <h4>Progression &amp; Next Lesson</h4>
+        <ul>
+          <li>If 360° achieved at standard → progress to 720° turns</li>
+          <li>Link to stall awareness: demonstrate accelerated stall entry from steep turn (ACSEL required) to reinforce load factor awareness</li>
+          <li>Collision avoidance discussion: turning flight is highest-risk phase for mid-air collision (EGAST GA1) — reinforce lookout habit</li>
+          <li>Future exercises building on steep turns: steep spirals, unusual attitude recovery</li>
+        </ul>
+        <div class="ref-row" style="margin-top:12px">
+          <span class="sop-ref">CAPA SOP §1.22.4</span>
+          <span class="sop-ref">EGAST GA8 — Stall/Spin</span>
+          <span class="sop-ref">EGAST GA1 — Collision Avoidance</span>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div>CAPA · P-MENTOR · VFR · EASA PPL</div>
+    <div><span>TURNS 45° BANK</span> &nbsp;·&nbsp; FI BRIEFING PACKAGE</div>
+    <div>SOP Ed.2 Rev.1 · NOV 2025</div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
